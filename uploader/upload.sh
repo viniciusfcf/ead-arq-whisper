@@ -1,0 +1,1 @@
+curl --header "Content-Type:application/octet-stream" --output saida.txt --data-binary @teste.png http://localhost:8080/audio
