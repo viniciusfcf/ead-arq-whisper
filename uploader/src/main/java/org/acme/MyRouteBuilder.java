@@ -33,6 +33,7 @@ public class MyRouteBuilder extends RouteBuilder {
 
             from("direct:sendMessage")
                 .to("log:transacoes?showHeaders=true")
+                .to("amqp:queue:audios")
             ;
 
             from("direct:mockResponse")

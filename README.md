@@ -18,3 +18,11 @@ Pode ser alterado para buscar de um banco (Postgres ou MongoDB) ou cache (Redis 
 
 ## WhisperCPP
 Modelo de fato que faz a transcrição.
+
+
+## Uploader
+
+
+http://localhost:8161/console/
+
+Não funciona ainda corretamente por conta de CORS
