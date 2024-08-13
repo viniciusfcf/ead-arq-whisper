@@ -20,9 +20,17 @@ Pode ser alterado para buscar de um banco (Postgres ou MongoDB) ou cache (Redis 
 Modelo de fato que faz a transcrição.
 
 
-## Uploader
+## Running
 
+`docker compose up` para subir o artemis
 
+`quarkus dev`, ou `./mvnw quarkus:dev` nos projetos `uploader` e `translator`
+
+Execute `./upload.sh`. Irá enviar a imagem `teste.png` para o uploader
+
+Abra o arquivo `/tmp/saida.png`. Ele deve ter o mesmo conteudo do arquivo `teste.png`
+
+## Console WEB Artemis
 http://localhost:8161/console/
 
 Não funciona ainda corretamente por conta de CORS
