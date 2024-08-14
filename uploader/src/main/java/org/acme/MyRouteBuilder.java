@@ -11,7 +11,7 @@ public class MyRouteBuilder extends RouteBuilder {
             .get("/say")
                 .to("direct:mockResponse");
                 
-        rest("/audio")
+        rest("/audios")
             .post()
                 .consumes("application/octet-stream")
 
@@ -32,8 +32,9 @@ public class MyRouteBuilder extends RouteBuilder {
     
 
             from("direct:sendMessage")
-                .to("log:transacoes?showHeaders=true")
+                .to("log:audioEntrada?showHeaders=true")
                 .to("amqp:queue:audios")
+                .to("log:audioSaidaQueue?showHeaders=true")
             ;
 
             from("direct:mockResponse")
