@@ -19,12 +19,16 @@ public class CacheBean {
     @Remote("transcricoes") 
     RemoteCache<String, String> cache; 
 
+    @Inject
+    MyCipher myCipher;
+
     public void put(Exchange exchange) throws Exception {
 
         Message in = exchange.getIn();
         String correlationID = in.getHeader("JMSCorrelationID", String.class);
         String message = exchange.getIn().getBody(String.class);
-        cache.put(correlationID, message, 1, TimeUnit.DAYS);
+        String encryptedMessage = myCipher.encrypt(message);
+        cache.put(correlationID, encryptedMessage, 1, TimeUnit.DAYS);
         
     }
 

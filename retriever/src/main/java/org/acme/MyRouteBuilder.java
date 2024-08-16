@@ -23,6 +23,8 @@ public class MyRouteBuilder extends RouteBuilder{
             .choice()
             .when(body().isNull())
                 .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(404))
+            .otherwise()
+                .to("bean:myCipher?method=decrypt")
         ;
 
     }
