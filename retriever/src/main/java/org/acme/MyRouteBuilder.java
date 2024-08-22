@@ -21,10 +21,10 @@ public class MyRouteBuilder extends RouteBuilder{
         from("direct:getTranscription")
             .to("bean:cacheBean?method=get(${header.id})")
             .choice()
-            .when(body().isNull())
-                .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(404))
-            .otherwise()
-                .to("bean:myCipher?method=decrypt")
+                .when(body().isNull())
+                    .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(404))
+                .otherwise()
+                    .to("bean:myCipher?method=decrypt")
         ;
 
     }

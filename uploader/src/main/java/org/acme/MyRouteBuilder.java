@@ -1,5 +1,7 @@
 package org.acme;
 
+import java.util.UUID;
+
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 
@@ -19,9 +21,11 @@ public class MyRouteBuilder extends RouteBuilder {
                 .to("direct:sendMessage");
     
         from("direct:sendMessage")
-            .to("amqp:queue:audios")
+            .setHeader("TranscriptionID", () -> UUID.randomUUID().toString())
+            .to("amqp:queue:audios?exchangePattern=InOnly&useMessageIDAsCorrelationID=true")
+            .to("log:audios?showBody=false&showHeaders=true")
             .setHeader(Exchange.CONTENT_TYPE, constant("text/plain"))
-            .setBody(simple("OK"))
+            .setBody(header("TranscriptionID"))
         ;
 
         from("direct:okResponse")

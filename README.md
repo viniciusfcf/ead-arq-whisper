@@ -34,3 +34,9 @@ Abra o arquivo `/tmp/saida.png`. Ele deve ter o mesmo conteudo do arquivo `teste
 http://localhost:8161/console/
 
 Não funciona ainda corretamente por conta de CORS
+
+## Fontes
+
+https://github.com/ggerganov/whisper.cpp/
+
+https://github.com/containers/ai-lab-recipes/blob/main/models/Containerfile

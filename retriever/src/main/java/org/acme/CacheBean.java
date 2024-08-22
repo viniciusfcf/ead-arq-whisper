@@ -25,7 +25,7 @@ public class CacheBean {
     public void put(Exchange exchange) throws Exception {
 
         Message in = exchange.getIn();
-        String correlationID = in.getHeader("JMSCorrelationID", String.class);
+        String correlationID = in.getHeader("TranscriptionID", String.class);
         String message = exchange.getIn().getBody(String.class);
         String encryptedMessage = myCipher.encrypt(message);
         cache.put(correlationID, encryptedMessage, 1, TimeUnit.DAYS);
