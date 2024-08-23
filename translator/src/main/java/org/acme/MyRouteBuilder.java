@@ -6,7 +6,8 @@ public class MyRouteBuilder extends RouteBuilder{
 
     @Override
     public void configure() throws Exception {
-        from("amqp:queue:audios?receiveTimeout=100000&transactionTimeout=-1")
+        // 100.000.000 ms = 16 min o timeout
+        from("amqp:queue:audios?receiveTimeout={{app.receiveTimeout}}&transactionTimeout=-1")
             .to("log:translatorEntrada?showBody=false&showHeaders=true")
             // Exemplo de curl. -F é tipo parametro do FORM.
 

@@ -21,9 +21,10 @@ public class MyRouteBuilder extends RouteBuilder {
                 .to("direct:sendMessage");
     
         from("direct:sendMessage")
+            .to("log:audiosEntrada?showBody=false&showHeaders=true")
             .setHeader("TranscriptionID", () -> UUID.randomUUID().toString())
             .to("amqp:queue:audios?exchangePattern=InOnly&useMessageIDAsCorrelationID=true")
-            .to("log:audios?showBody=false&showHeaders=true")
+            .to("log:audiosSaida?showBody=false&showHeaders=true")
             .setHeader(Exchange.CONTENT_TYPE, constant("text/plain"))
             .setBody(header("TranscriptionID"))
         ;
