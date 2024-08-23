@@ -20,15 +20,24 @@ Pode ser alterado para buscar de um banco (Postgres ou MongoDB) ou cache (Redis 
 Modelo de fato que faz a transcrição.
 
 
-## Running
+## Running LOCAL
 
-`docker compose up` para subir o artemis
+## Pre requisitos
+- Podman
+- [Quarkus CLI](https://quarkus.io/guides/cli-tooling)
+- Java 17
 
-`quarkus dev`, ou `./mvnw quarkus:dev` nos projetos `uploader` e `translator`
+## Subir ambiente
 
-Execute `./upload.sh`. Irá enviar a imagem `teste.png` para o uploader
+- `docker compose up` para subir o artemis
+- Executar os passos do [WHISPER](whisper/README.md) para build e run do whisper server
 
-Abra o arquivo `/tmp/saida.png`. Ele deve ter o mesmo conteudo do arquivo `teste.png`
+- `quarkus dev`, ou `./mvnw quarkus:dev` nos projetos `uploader`, `translator` e `retriever`
+
+- Execute `./upload.sh`. 
+- A saída será a identificação da transcrição, ex: `7e36958b-710d-4461-8242-80a85adb42ec`
+- Para consultar o resultado da transcrição: `curl localhost:8082/transcriptions/7e36958b-710d-4461-8242-80a85adb42ec`
+  - Quando não está pronta, o retorno é vazio cmo http status 404
 
 ## Console WEB Artemis
 http://localhost:8161/console/
