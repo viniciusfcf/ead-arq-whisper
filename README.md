@@ -49,3 +49,4 @@ Não funciona ainda corretamente por conta de CORS
 https://github.com/ggerganov/whisper.cpp/
 
 https://github.com/containers/ai-lab-recipes/blob/main/models/Containerfile
+https://learnopencv.com/fine-tuning-whisper-on-custom-dataset/
