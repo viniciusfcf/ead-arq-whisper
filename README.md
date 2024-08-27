@@ -1,4 +1,4 @@
-# ead-arq-whisper
+# eda-arq-whisper
 
 ![alt text](image.png)
 
