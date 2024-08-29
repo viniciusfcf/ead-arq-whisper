@@ -1,0 +1,21 @@
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemis
+metadata:
+  name: artemis
+  namespace: whisper
+spec:
+  deploymentPlan:
+    image: placeholder
+    jolokiaAgentEnabled: false
+    journalType: nio
+    managementRBACEnabled: true
+    messageMigration: false
+    persistenceEnabled: false
+    requireLogin: false
+    size: 2
+  adminPassword: admin
+  adminUser: admin
+  console:
+    expose: true
+status:
+  conditions: []

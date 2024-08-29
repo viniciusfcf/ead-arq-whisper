@@ -1,0 +1,9 @@
+apiVersion: infinispan.org/v1
+kind: Infinispan
+metadata:
+  name: infinispan
+  namespace: whisper
+spec:
+  expose:
+    type: Route
+  replicas: 1

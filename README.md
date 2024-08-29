@@ -44,6 +44,14 @@ http://localhost:8161/console/
 
 Não funciona ainda corretamente por conta de CORS
 
+# OpenShift com whispercpp
+
+- Instalar operador: Red Hat Integration - AMQ Broker for RHEL 8 (Multiarch)
+- Criar artemis
+- Criar address
+- Instalar Operador: Data Grid
+- Deploy das aplicações Quarkus/Camel: `bash deploy-all.sh`
+
 ## Fontes
 
 https://github.com/ggerganov/whisper.cpp/

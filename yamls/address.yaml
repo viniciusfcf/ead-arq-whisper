@@ -1,0 +1,13 @@
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemisAddress
+metadata:
+  name: audios
+  namespace: whisper
+spec:
+  addressName: audios
+  queueName: audios
+  routingType: anycast
+  password: admin
+  user: admin
+status:
+  conditions: []
