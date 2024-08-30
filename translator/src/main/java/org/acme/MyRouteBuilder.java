@@ -7,7 +7,7 @@ public class MyRouteBuilder extends RouteBuilder{
     @Override
     public void configure() throws Exception {
         // 100.000.000 ms = 16 min o timeout
-        from("amqp:queue:audios?receiveTimeout={{app.receiveTimeout}}&transactionTimeout=-1")
+        from("activemq:queue:audios?receiveTimeout={{app.receiveTimeout}}&transactionTimeout=-1")
             .to("log:translatorEntrada?showBody=false&showHeaders=true")
             // Exemplo de curl. -F é tipo parametro do FORM.
 
@@ -21,7 +21,7 @@ public class MyRouteBuilder extends RouteBuilder{
             // .to("file:///tmp?fileName=saida.png")
             .to("bean:transcriptAPI")
             .to("log:translatorSaida?showBody=false&showHeaders=true")
-            .to("amqp:queue:transcriptions?exchangePattern=InOnly")
+            .to("activemq:queue:transcriptions?exchangePattern=InOnly")
         ;
     }
     
