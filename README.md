@@ -53,8 +53,8 @@ Não funciona ainda corretamente por conta de CORS
 - URL da console do Artemis: `oc get route artemis-wconsj-0-svc-rte -n whisper`
   - username e password: `admin` (está no yaml do Artemis)
 - URL da console do Cache: `oc get route infinispan-external`
-  - username: developer
-  - password: 
+  - username e password: Ver na secret `infinispan-generated-secret`
+    - `oc get secret infinispan-generated-secret -o jsonpath="{.data}" | jq -r '.[]' | base64 -d`
 
 # IMPORTANTE
 - NÃO implantar assim em produção, vários aspectos importantes não foram feitos do melhor modo nessa PoC
