@@ -58,7 +58,8 @@ public class TranscriptAPIService {
             HttpEntity entity = MultipartEntityBuilder
                     .create()
                     .addBinaryBody(
-                            "file",
+                            //Se fosse seguindo whispercpp, o name seria apenas "file"
+                            "audio_file",
                             body,
                             ContentType.APPLICATION_OCTET_STREAM,
                             "TranscriptionID="+exchange.getIn().getHeader("TranscriptionID"))
@@ -69,7 +70,9 @@ public class TranscriptAPIService {
 
             final Result result = httpClient.execute(httpPost, response -> {
                 // Process response message and convert it into a value object
-                return new Result(response.getCode(), mapper.readTree(EntityUtils.toString(response.getEntity())));
+                String resultStr = EntityUtils.toString(response.getEntity());
+                System.out.println(resultStr);
+                return new Result(response.getCode(), mapper.readTree(resultStr));
             });
             System.out.println("TranscriptAPIService.x()" + result);
             return result.transcricao;
