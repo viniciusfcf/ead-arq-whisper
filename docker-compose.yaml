@@ -3,7 +3,7 @@ services:
     image: quay.io/artemiscloud/activemq-artemis-broker:1.0.25
     ports:
       - "8161:8161"
-      - "61616:61616"
+      - "8888:61616"
       - "5672:5672"
     environment:
       AMQ_USER: quarkus
