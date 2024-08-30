@@ -47,10 +47,18 @@ Não funciona ainda corretamente por conta de CORS
 # OpenShift com whispercpp
 
 - Instalar operador: Red Hat Integration - AMQ Broker for RHEL 8 (Multiarch)
-- Criar artemis
-- Criar address
 - Instalar Operador: Data Grid
+-
 - Deploy das aplicações Quarkus/Camel: `bash deploy-all.sh`
+- URL da console do Artemis: `oc get route artemis-wconsj-0-svc-rte -n whisper`
+  - username e password: `admin` (está no yaml do Artemis)
+- URL da console do Cache: `oc get route infinispan-external`
+  - username: developer
+  - password: 
+
+# IMPORTANTE
+- NÃO implantar assim em produção, vários aspectos importantes não foram feitos do melhor modo nessa PoC
+- Exemplo: conexão ao cache está SEM TLS, acesso ao artemis está sem login e senha...
 
 ## Fontes
 
