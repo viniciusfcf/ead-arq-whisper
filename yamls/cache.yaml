@@ -1,9 +1,0 @@
-apiVersion: infinispan.org/v2alpha1
-kind: Cache
-metadata:
-  name: transcricoes
-  namespace: whisper
-spec:
-  clusterName: infinispan
-  name: transcricoes
-  templateName: org.infinispan.DIST_SYNC

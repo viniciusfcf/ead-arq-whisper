@@ -55,6 +55,9 @@ Não funciona ainda corretamente por conta de CORS
 ## Fontes
 
 https://github.com/ggerganov/whisper.cpp/
+https://ahmetoner.com/whisper-asr-webservice/run/
+https://github.com/viniciusfcf/ai-lab-recipes
 
 https://github.com/containers/ai-lab-recipes/blob/main/models/Containerfile
 https://learnopencv.com/fine-tuning-whisper-on-custom-dataset/
+

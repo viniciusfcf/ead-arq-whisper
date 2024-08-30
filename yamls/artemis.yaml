@@ -5,7 +5,6 @@ metadata:
   namespace: whisper
 spec:
   deploymentPlan:
-    image: placeholder
     jolokiaAgentEnabled: false
     journalType: nio
     managementRBACEnabled: true
@@ -17,5 +16,15 @@ spec:
   adminUser: admin
   console:
     expose: true
-status:
-  conditions: []
+---
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemisAddress
+metadata:
+  name: audios
+  namespace: whisper
+spec:
+  addressName: audios
+  queueName: audios
+  routingType: anycast
+  password: admin
+  user: admin

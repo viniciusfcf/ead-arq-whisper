@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whisper-deployment
+  labels:
+    app: whisper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: whisper
+  template:
+    metadata:
+      labels:
+        app: whisper
+    spec:
+      containers:
+      - name: whisper
+        image: onerahmet/openai-whisper-asr-webservice:latest
+        ports:
+        - containerPort: 9000
+        env:
+        - name: ASR_ENGINE
+          # openai_whisper, faster_whisper
+          value: openai_whisper
+        - name: ASR_MODEL
+          # tiny, base, small, medium, large (only OpenAI Whisper), large-v1, large-v2 and large-v3.
+          value: medium
+        - name: ASR_MODEL_PATH
+          value: "/data/whisper"
+        resources:
+          requests:
+            memory: "6Gi"
+            cpu: "1m"
+        volumeMounts:
+        - mountPath: "/data/whisper"
+          name: whisper-pv-storage
+      volumes:
+      - name: whisper-pv-storage
+        persistentVolumeClaim:
+          claimName: whisper-pv-claim
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: whisper-pv-claim
+spec:
+  storageClassName: gp3-csi
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: whisper
+  labels:
+    app: whisper
+spec:
+  ports:
+  - port: 9000
+    protocol: TCP
+  selector:
+    app: whisper
