@@ -7,6 +7,11 @@ spec:
   expose:
     type: Route
   replicas: 1
+  security:
+    endpointAuthentication: true
+    endpointSecretName: connect-secret
+    endpointEncryption:
+       type: None
 ---
 apiVersion: infinispan.org/v2alpha1
 kind: Cache
@@ -17,3 +22,13 @@ spec:
   clusterName: infinispan
   name: transcricoes
   templateName: org.infinispan.DIST_SYNC
+---
+# Gerado a partir do seguinte comando: oc create secret generic --from-file=identities.yaml connect-secret
+kind: Secret
+apiVersion: v1
+metadata:
+  name: connect-secret
+  namespace: whisper
+data:
+  identities.yaml: Y3JlZGVudGlhbHM6Ci0gdXNlcm5hbWU6IHF1YXJrdXMKICBwYXNzd29yZDogcXVhcmt1cw==
+type: Opaque

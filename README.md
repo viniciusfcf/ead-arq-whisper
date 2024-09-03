@@ -49,13 +49,22 @@ Não funciona localmente ainda por conta de CORS
 - Instalar Operador: Data Grid
 - Aplicar os yamls da pasta `yamls` para fazer deploy do artemis, cache e whisper
 - Fazer login no OpenShift na linha de comando, ex: `oc login --token=sha256~...`
-- Deploy das aplicações Quarkus/Camel: `bash deploy-all.sh`
-  - Outra opção seria gerar imagens das aplicações e fazer o deploy por dentro da console web do OpenSHift: Todo projeto tem um arquivo `src/main/docker/Dockerfile.jvm` que explica como criar uma imagem daquele projeto
-- URL da console do Artemis: `oc get route artemis-wconsj-0-svc-rte -n whisper`
+- URL da console do Artemis: `echo 'http://'$(oc get route artemis-wconsj-0-svc-rte -o=jsonpath='{.spec.host}' -n whisper)`
   - username e password: `admin` (está no yaml do Artemis)
-- URL da console do Cache: `oc get route infinispan-external`
+  - Essa Console demora um pouco para ficar disponível
+- URL da console do Cache: `echo 'https://'$(oc get route infinispan-external -o=jsonpath='{.spec.host}')`
   - username e password: Ver na secret `infinispan-generated-secret`
-    - `oc get secret infinispan-generated-secret -o jsonpath="{.data}" | jq -r '.[]' | base64 -d`
+    - `oc get secret infinispan-generated-secret -o jsonpath="{.data.identities\.yaml}" -n whisper | base64 --decode`
+- Deploy das aplicações Quarkus/Camel: 
+  - Atualizar propriedade `%prod.quarkus.infinispan-client.password` com a senha gerada 
+  - Executar `bash deploy-all.sh`
+  - Outra opção seria gerar imagens das aplicações e fazer o deploy por dentro da console web do OpenSHift: Todo projeto tem um arquivo `src/main/docker/Dockerfile.jvm` que explica como criar uma imagem daquele projeto
+- URL do UPLOADER: `UPLOADER='http://'$(oc get route uploader -o=jsonpath='{.spec.host}' -n whisper)`
+  - `curl --header "Content-Type:application/octet-stream" --data-binary @samples/jfk.wav $UPLOADER:8080/audios`
+- URL do RETRIEVER: `RETRIEVER='http://'$(oc get route retriever -o=jsonpath='{.spec.host}' -n whisper)`
+  - `curl $RETRIEVER/82a14f8a-fa95-4a04-977e-b190adead205 -v`
+
+B9iClRWedapnqAkJ
 
 # IMPORTANTE
 - NÃO implantar assim em produção, vários aspectos importantes não foram feitos do melhor modo nessa PoC
