@@ -48,8 +48,8 @@ Não funciona ainda corretamente por conta de CORS
 
 - Instalar operador: Red Hat Integration - AMQ Broker for RHEL 8 (Multiarch)
 - Instalar Operador: Data Grid
--
 - Deploy das aplicações Quarkus/Camel: `bash deploy-all.sh`
+  - Para gerar imagens: Todo projeto tem um arquivo `src/main/docker/Dockerfile.jvm` que explica como criar uma imagem daquele projeto
 - URL da console do Artemis: `oc get route artemis-wconsj-0-svc-rte -n whisper`
   - username e password: `admin` (está no yaml do Artemis)
 - URL da console do Cache: `oc get route infinispan-external`
