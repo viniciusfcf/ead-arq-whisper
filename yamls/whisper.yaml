@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: whisper-deployment
+  namespace: whisper
   labels:
     app: whisper
 spec:
@@ -45,6 +46,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: whisper-pv-claim
+  namespace: whisper
 spec:
   storageClassName: gp3-csi
   accessModes:
@@ -58,6 +60,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: whisper
+  namespace: whisper
   labels:
     app: whisper
 spec:
