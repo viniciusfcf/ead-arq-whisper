@@ -56,7 +56,6 @@ Não funciona localmente ainda por conta de CORS
   - username e password: Ver na secret `infinispan-generated-secret`
     - `oc get secret infinispan-generated-secret -o jsonpath="{.data.identities\.yaml}" -n whisper | base64 --decode`
 - Deploy das aplicações Quarkus/Camel: 
-  - Atualizar propriedade `%prod.quarkus.infinispan-client.password` com a senha gerada 
   - Executar `bash deploy-all.sh`
   - Outra opção seria gerar imagens das aplicações e fazer o deploy por dentro da console web do OpenSHift: Todo projeto tem um arquivo `src/main/docker/Dockerfile.jvm` que explica como criar uma imagem daquele projeto
 - URL do UPLOADER: `UPLOADER='http://'$(oc get route uploader -o=jsonpath='{.spec.host}' -n whisper)`
