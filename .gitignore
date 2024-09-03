@@ -1,3 +1,5 @@
+Fine-Tuning-Whisper-on-Custom-Dataset/Fine-onnx/*
+Fine-Tuning-Whisper-on-Custom-Dataset/whisper*/*
 *.bin
 
 # OSX
