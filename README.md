@@ -52,9 +52,9 @@ Não funciona localmente ainda por conta de CORS
 - URL da console do Artemis: `echo 'http://'$(oc get route artemis-wconsj-0-svc-rte -o=jsonpath='{.spec.host}' -n whisper)`
   - username e password: `admin` (está no yaml do Artemis)
   - Essa Console demora um pouco para ficar disponível
-- URL da console do Cache: `echo 'https://'$(oc get route infinispan-external -o=jsonpath='{.spec.host}')`
-  - username e password: Ver na secret `infinispan-generated-secret`
-    - `oc get secret infinispan-generated-secret -o jsonpath="{.data.identities\.yaml}" -n whisper | base64 --decode`
+- URL da console do Cache: `echo 'http://'$(oc get route infinispan-external -o=jsonpath='{.spec.host}')`
+  - username e password: Ver na secret `infinispan-generated-operator-secret`
+    - `oc get secret infinispan-generated-operator-secret -o jsonpath="{.data.identities\.yaml}" -n whisper | base64 --decode`
 - Deploy das aplicações Quarkus/Camel: 
   - Executar `bash deploy-all.sh`
   - Outra opção seria gerar imagens das aplicações e fazer o deploy por dentro da console web do OpenSHift: Todo projeto tem um arquivo `src/main/docker/Dockerfile.jvm` que explica como criar uma imagem daquele projeto
