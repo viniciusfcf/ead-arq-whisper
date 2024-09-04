@@ -12,11 +12,6 @@ public class MyRouteBuilder extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
-        rest("/hello")
-                .get("")
-                .description("Endpoint que responde um simples OK")
-                .to("direct:okResponse");
-
         rest("/audios")
                 .post()
                 .description("Endpoint que faz transcrições de audios")
@@ -34,9 +29,5 @@ public class MyRouteBuilder extends RouteBuilder {
                 .setHeader(Exchange.CONTENT_TYPE, constant("text/plain"))
                 .setBody(header("TranscriptionID"));
 
-        from("direct:okResponse")
-                .to("log:transacoes?showHeaders=true")
-                .setHeader(Exchange.CONTENT_TYPE, constant("text/plain"))
-                .setBody(simple("OK"));
     }
 }
