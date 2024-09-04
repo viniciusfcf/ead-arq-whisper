@@ -59,7 +59,10 @@ Não funciona localmente ainda por conta de CORS
   - Executar `bash deploy-all.sh`
   - Outra opção seria gerar imagens das aplicações e fazer o deploy por dentro da console web do OpenSHift: Todo projeto tem um arquivo `src/main/docker/Dockerfile.jvm` que explica como criar uma imagem daquele projeto
 - URL do UPLOADER: `UPLOADER='http://'$(oc get route uploader -o=jsonpath='{.spec.host}' -n whisper)`
-  - `TRANS_ID=$(curl --header "Content-Type:application/octet-stream" --data-binary @samples/jfk.wav $UPLOADER/audios)`
+- URL do Swagger do UPLOADER: `echo $UPLOADER/q/swagger-ui`
+  - Como submeter um arquivo:
+    - `TRANS_ID=$(curl --header "Content-Type:application/octet-stream" --data-binary @samples/jfk.wav $UPLOADER/audios)`
+    - Utilizar swagger
 - URL do RETRIEVER: `RETRIEVER='http://'$(oc get route retriever -o=jsonpath='{.spec.host}' -n whisper)`
   - `curl $RETRIEVER/transcriptions/$TRANS_ID`
 
