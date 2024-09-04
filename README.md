@@ -62,10 +62,10 @@ Não funciona localmente ainda por conta de CORS
   - Como submeter um arquivo:
     - `TRANS_ID=$(curl --header "Content-Type:application/octet-stream" --data-binary @samples/jfk.wav $UPLOADER/audios)`
     - Utilizar swagger
-- URL do RETRIEVER: `RETRIEVER='http://'$(oc get route retriever -o=jsonpath='{.spec.host}' -n whisper)`
+- URL do RETRIEVER:
+  - `RETRIEVER='http://'$(oc get route retriever -o=jsonpath='{.spec.host}' -n whisper)`
   - `curl $RETRIEVER/transcriptions/$TRANS_ID`
 
-B9iClRWedapnqAkJ
 
 # IMPORTANTE
 - NÃO implantar assim em produção, vários aspectos importantes não foram feitos do melhor modo nessa PoC
